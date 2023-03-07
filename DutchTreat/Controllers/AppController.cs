@@ -1,4 +1,5 @@
-﻿using DutchTreat.ViewModels;
+﻿using DutchTreat.Services;
+using DutchTreat.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -6,6 +7,12 @@ namespace DutchTreat.Controllers
 {
     public class AppController : Controller
     {
+        private readonly IMailService _mailService;
+
+        public AppController(IMailService mailService)
+        {
+            _mailService = mailService;
+        }
         public IActionResult Index()
         {
             //throw new InvalidProgramException("Bad things happen to good developers");
@@ -35,6 +42,11 @@ namespace DutchTreat.Controllers
 
             if (ModelState.IsValid) {
                 //send the email
+
+                _mailService.SendMessage("merveceylan152@gmail.com", model.Name, $"From: {model.Email}");
+                ViewBag.UserMessage = "Mail Sent";
+                ModelState.Clear();
+
             }
             else
             {

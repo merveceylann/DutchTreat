@@ -1,3 +1,4 @@
+using DutchTreat.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +15,7 @@ namespace DutchTreat
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IMailService, NullMailService>(); //buraya ekledikten sonra controllera enhjecte edecegiz  
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
           
