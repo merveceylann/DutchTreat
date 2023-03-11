@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Product>
+
+<h1> Shop </h1>
+<p> Count : @Model.Count() </p>
+<div class="row">
+    @foreach (var p in Model)
+    {
+        <div class="col-md-3">
+            @*<img src="~/images/vangogh.jpg" />*@
+            <div class="border bg-light rounded p-2">
+                <img src="~/images/(@p.ArtId).jpg)" class="img-fluid" alt="@p.Title" />
+                <h3>@p.Category - @p.Size</h3>
+                <ul>
+                    <li>Price: $@p.Price</li>
+                    <li>Artist: @p.Artist</li>
+                    <li>Title: @p.Title</li>
+                    <li>Description: @p.ArtDescription</li>
+                </ul>
+                <button class="btn btn-success">Buy</button>
+            </div>
+        </div>
+    }
+</div>

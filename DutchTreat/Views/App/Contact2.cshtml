@@ -1,0 +1,31 @@
+﻿@model ContactViewModel
+
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+@*bu sekilde hem server side hem clientside validation yapmis olduk*@
+<div class="col-md-6 offset-md-3">
+    <div class="card card-body bg-light">
+        <form method="post">
+            @*<div asp-validation-summary="All"></div>*@
+            <div asp-validation-summary="ModelOnly"></div>
+            <label asp-for="Name">Input: </label>
+            <br />
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+            <br />
+            <label asp-for="Email">EMail: </label>
+            <br />
+            <input type="email" asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+            <br /><br /><br />
+            <input class="btn btn-outline-dark" type="submit" value="Send Message" />
+            <div>@ViewBag.UserMessage</div>
+        </form>
+    </div>
+</div>

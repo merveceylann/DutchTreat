@@ -3,41 +3,46 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title><a href="~/lib/bootstrap/dist/css/bootstrap.min.css.map"></a>
-<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    <a href="~/lib/bootstrap/dist/css/bootstrap.min.css.map"></a>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <header class="container-fluid">
-        
-        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
-            <h1 class="navbar-brand">Welcome to Dutch Treat</h1>
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#theMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id="theMenu" class="collapse navbar-collapse">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="About">About</a></li>
-                @*Tag Helper kullandik view startta *@
-                <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="Contact">Contact</a></li>
-                @*<a href="/app/contact">*@
-            </ul>
-            </div>
-        </nav>
-    </header>
+    <div class="row">
+        <header class="container-fluid">
+            <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+                <h1 class="navbar-brand"><i class="fas fa-paint-brush"></i> Dutch Treat</h1>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#theMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="theMenu" class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="About">About</a></li>
+                        @*Tag Helper kullandik view importta *@
+                        <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="Shop">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="Contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="Contact2">Contact2</a></li>
+                        @*<a href="/app/contact">*@
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+
     <section class="container">
-        <h2>@ViewBag.Title</h2>
+        <h2 class="text-center">@ViewBag.Title</h2>
         @RenderBody()
     </section>
-    <footer class="container">
-        <div class="text-center">Copyright</div>
-     </footer>
-    
+    <footer class="container align-bottom">
+        <div class="text-center">Copyright<i class="fa-solid fa-paintbrush"></i></div>
+    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js"></script>
-    
+    @*<div style="height:500px"></div>*@
     @RenderSection("Scripts", false)
     @*buradaki rendersectioni contact page e ekleyecegizs*@
 </body>

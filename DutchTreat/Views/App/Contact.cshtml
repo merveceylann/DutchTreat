@@ -9,20 +9,29 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 }
 @*bu sekilde hem server side hem clientside validation yapmis olduk*@
+<div class="col-md-6 offset-md-3">
+    <div class="card card-body bg-light">
+        <form method="post">
+            @*<div asp-validation-summary="All"></div>*@
+            <div asp-validation-summary="ModelOnly"></div>
 
-<form method="post">
-    @*<div asp-validation-summary="All"></div>*@
-    <div asp-validation-summary="ModelOnly"></div>
-    <label asp-for="Name">Your Name: </label>
-    <br />
-    <input asp-for="Name" />
-    <span asp-validation-for="Name"></span>
-    <br />
-    <label asp-for="Email">EMail: </label>
-    <br />
-    <input type="email" asp-for="Email" />
-    <span asp-validation-for="Email"></span>
-    <br />
-    <input type="submit" value="Send Message" />
-    <div>@ViewBag.UserMessage</div>
-</form>
+            <div class="form-group">
+                <label asp-for="Name">Your Name: </label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Email">EMail: </label>
+
+                <input type="text" asp-for="Email" class="form-control" placeholder="Username" aria-label="Username" />
+                <span class="input-group-text"> @@ </span>
+                <input type="text" class="form-control" placeholder="Server" aria-label="Server">
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-outline-dark" type="submit" value="Send Message" />
+            </div>
+            <div>@ViewBag.UserMessage</div>
+        </form>
+    </div>
+</div>

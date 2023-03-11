@@ -1,3 +1,4 @@
+using DutchTreat.Data;
 using DutchTreat.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,10 +16,17 @@ namespace DutchTreat
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DutchContext>();
+
+            services.AddTransient<DutchSeeder>();
+
             services.AddTransient<IMailService, NullMailService>(); //buraya ekledikten sonra controllera enhjecte edecegiz  
+
+            services.AddScoped<IDutchRepository, DutchRepository>();
+
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
-          
+
             services.AddRazorPages();
         }
 
