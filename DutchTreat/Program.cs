@@ -28,6 +28,7 @@ namespace DutchTreat
                 host.Run();
             }
 
+            //seed datayi calistirmak icin consolea "dotnet run /seed"
             //CreateHostBuilder(args).Build().Run();
         }
 
