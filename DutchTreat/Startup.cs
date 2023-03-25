@@ -25,8 +25,9 @@ namespace DutchTreat
             services.AddScoped<IDutchRepository, DutchRepository>();
 
             services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation();
-
+                .AddRazorRuntimeCompilation()
+                .AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                //orders loopa giriyordu ve listelenmiyordu include etsek de o yüzden newtonsoft for mvc indirip bunu ekledik.
             services.AddRazorPages();
         }
 

@@ -1,4 +1,5 @@
 ﻿using DutchTreat.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections;
@@ -18,6 +19,23 @@ namespace DutchTreat.Data
             _logger = logger;
         }
 
+        public IEnumerable<Order> GetAllOrders()
+        {
+            try
+            {
+                _logger.LogInformation("GetAllOrders was called");
+                return _context.Orders
+                    .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get all orders {ex}");
+                return null;
+            }
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
             try
@@ -30,6 +48,20 @@ namespace DutchTreat.Data
                 _logger.LogError($"Failed to get all products {ex}");
                 return null;
             }
+
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return _context.Orders
+                  .Include(o => o.Items)
+                  .ThenInclude(i => i.Product)
+                  .Where(o => o.Id == id)
+                  .FirstOrDefault();
+
+            //return _context.Orders.Find(id); 
+
+            //alttaki de listeliyor fakat ilini bulup orderi bulup getiriyor loopa girdigi icin orderitems gelmiyor o yuzden ilkini kullandim.
 
         }
 
