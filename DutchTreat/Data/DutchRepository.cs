@@ -19,15 +19,30 @@ namespace DutchTreat.Data
             _logger = logger;
         }
 
-        public IEnumerable<Order> GetAllOrders()
+        public void AddEntity(object model)
+        {
+            _context.Add(model);
+        }
+
+        public IEnumerable<Order> GetAllOrders(bool includeItems)
         {
             try
             {
-                _logger.LogInformation("GetAllOrders was called");
-                return _context.Orders
-                    .Include(o => o.Items)
-                    .ThenInclude(i => i.Product)
-                    .ToList();
+                //urlde varsayilan olarak true gonderirsek itemlari da dahil eder sorguya fakat false ise sadece orderi listeler bu da performans acisindan onemlidir.
+                if (includeItems)
+                {
+                    _logger.LogInformation("GetAllOrders was called");
+                    return _context.Orders
+                        .Include(o => o.Items)
+                        .ThenInclude(i => i.Product)
+                        .ToList();
+                }
+                else
+                {
+                    return _context.Orders
+                      .ToList();
+                }
+
             }
             catch (Exception ex)
             {

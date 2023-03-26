@@ -1,3 +1,4 @@
+using AutoMapper;
 using DutchTreat.Data;
 using DutchTreat.Services;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace DutchTreat
@@ -20,6 +22,8 @@ namespace DutchTreat
 
             services.AddTransient<DutchSeeder>();
 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddTransient<IMailService, NullMailService>(); //buraya ekledikten sonra controllera enhjecte edecegiz  
 
             services.AddScoped<IDutchRepository, DutchRepository>();
@@ -27,7 +31,7 @@ namespace DutchTreat
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation()
                 .AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-                //orders loopa giriyordu ve listelenmiyordu include etsek de o yüzden newtonsoft for mvc indirip bunu ekledik.
+            //orders loopa giriyordu ve listelenmiyordu include etsek de o yüzden newtonsoft for mvc indirip bunu ekledik.
             services.AddRazorPages();
         }
 
